@@ -1,30 +1,26 @@
 # Writeup for CTFFriday 2020 July W1 by Muzkkir
 
-
-
-In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theame "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad.
+In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theme "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad.
 
 This CTF had Five different challenges in which major 4 domain was covered; Stenography, Cryptography, Privilege Escalation, and Web challenges. We have to start from Stenography and Cryptography exploitation to access the system and Privilege Escalation to read the flag file.
 
 <kbd>![alt text](images/1.png)</kbd>
 
-
 ## First Flag
 
 <kbd>![alt text](images/02.png)</kbd>
 
-As the challenge was about the looking for the "MASK" on webpage. I visit source code page and found that.
+As the challenge was about looking for the "MASK" on the webpage. I visit the source code page and found that.
 
 <kbd>![alt text](images/03.png)</kbd>
 
 <kbd>![alt text](images/04.png)</kbd>
 
-Firstly, I have download all images and try to use Staghide tool to extract data.
-
+Firstly, I have download all images and try to use the Staghide tool to extract data.
 
 <kbd>![alt text](images/2.png)</kbd>
 
-I use Binwalk tool to extract data from the images. I got extracted files from the "mask.jpg"
+I use the Binwalk tool to extract data from the images. I got extracted files from the "mask.jpg"
 
 <kbd>![alt text](images/3.png)</kbd>
 
@@ -46,7 +42,6 @@ NSCTF{Andhakar_Ek_5ach_Hai_Aur_Prakash_3k_Mithya}
 <kbd>![alt text](images/9)</kbd>
 
 
-
 ## Second Flag
 
 <kbd>![alt text](images/10.png)</kbd>
@@ -55,7 +50,7 @@ Now, I need to look for the "nihilist" image.
 
 <kbd>![alt text](images/11.png)</kbd>
 
-Using strings command I extraced words from image "nihilist.jpeg". I used -n query to extract word length more than 9
+Using strings command I extracted words from image "nihilist.jpeg". I used -n query to extract word length more than 9
 ```
 strings nihilist.jpeg -n 9
 ```
@@ -65,11 +60,11 @@ strings nihilist.jpeg -n 9
 74 47 47 82 73 49 72 64 66 45 83 48 86 47 64 46 64 68 56 57 48 46 84 65 73 75 45 43 55 49 72 47 65
 Ask nikhil to open the door
 ```
-I have retrived the 2 important hints. In which first one might be encoding and the second would be the key to extract the flag.
+I have retrieved the 2 important hints. Which the first one might be encoding and the second would be the key to extract the flag.
 
 <kbd>![alt text](images/13.png)</kbd>
 
-I visit the "https://cryptii.com/" website to decode the ascii code. Look on the Library !! I found the encoding method.
+I visit the "https://cryptii.com/" website to decode the ASCII code. Look at the Library !! I found the encoding method.
 
 <kbd>![alt text](images/14.png)</kbd>
 
@@ -81,15 +76,12 @@ I visit the "https://cryptii.com/" website to decode the ascii code. Look on the
 
 
 
-
-
 ## Third Flag
-
 
 <kbd>![alt text](images/20.png)</kbd>
 
-As the HINT suggest So I started look for "dj" word.
-However most of attemps are failed at first.
+As the HINT suggests So I started looking for a "dj" word.
+However, most of the attempts are failed at first.
 
 <kbd>![alt text](images/21.png)</kbd>
 
@@ -101,7 +93,7 @@ However most of attemps are failed at first.
 
 <kbd>![alt text](images/25.png)</kbd>
 
-> I looked for every possibilities. :( but did not found anything usefull. Then I got the message !
+> I looked for every possibility. :( but did not found anything useful. Then I got the message!
 
 <kbd>![alt text](images/26.png)</kbd>
 
@@ -113,7 +105,7 @@ I have started looking for "CWE 22" and it is a path traversal vulnerability.
 
 <kbd>![alt text](images/28.png)</kbd>
 
-I visit the home folder of Asur and response was hidden.
+I visit the home folder of Asur and the response was hidden.
 
 <kbd>![alt text](images/29.png)</kbd>
 
@@ -138,20 +130,20 @@ I quickly visit the Asur's command history file.
 <kbd>![alt text](images/43.png)</kbd>
 
 ```asur:b8be16afba8c314ad33d812f22a04991b90e2aaa```
-As per my assumptions this must be the SSH login credentials but the password was hash format. For hash value to decode I use online platform named CrackStation where i got the real value of hash file.
+As per my assumptions, this must be the SSH login credentials but the password was hash format. For hash value to decode I use an online platform named CrackStation where I got the real value of the hash file.
 ```baconandcheese```
 
 <kbd>![alt text](images/44.png)</kbd>
 
-It's time for Login with SSH !! but what !! I face an error !
+It's time for Login with SSH !! but what !! I face an error!
 
 <kbd>![alt text](images/45.png)</kbd>
 
-Now i visit the "passwd" file in which I tried all other user with same credentials.
+Now I visit the "passwd" file in which I tried all other users with the same credentials.
 
 <kbd>![alt text](images/47.png)</kbd>
 
-listing the directory files for flag.
+listing the directory files for the flag.
 
 ```
 NSCTF{ATTR_TATTRA_SARVATRA}
@@ -161,17 +153,16 @@ NSCTF{ATTR_TATTRA_SARVATRA}
 
 
 
-
 ## Fifth Flag
 
 <kbd>![alt text](images/60.png)</kbd>
 
-Task is about Priviledge Escalation so first I have to look for simple methods.
+Task is about Privilege Escalation so first I have to look for simple methods.
 
 <kbd>![alt text](images/61.png)</kbd>
 
-Interesting, I can only use find file command as a super user.
-So, I research on web about the "find" command to got super user priviledge on web.
+Interestingly, I can only use the find command as a superuser.
+So, I research on the web about the "find" command to get superuser privilege on the web.
 
 <kbd>![alt text](images/69.png)</kbd>
 
@@ -199,12 +190,9 @@ Gotcha !!!
 
 
 
-
-
-
 ## Conclusion
 
-Overall, this CTF was unique for me because I learned about Priviledge Escalation, cryptography, and Stegniography.  Also, playing this was fun and I appreciate the efforts of the team.
+Overall, this CTF was unique for me because I learned about Privilege Escalation, cryptography, and Stegniography.  Also, playing this was fun and I appreciate the efforts of the team.
 
 
 #
