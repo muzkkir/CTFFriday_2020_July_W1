@@ -1,6 +1,6 @@
 # Writeup for CTFFriday 2020 July W1 by Muzkkir
 
-In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theme "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad.
+In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theme "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad. "Asur" is a  Thriller Indian Web series and suspense make you to watch till the end without boring.
 
 This CTF had Five different challenges in which major 4 domain was covered; Stenography, Cryptography, Privilege Escalation, and Web challenges. We have to start from Stenography and Cryptography exploitation to access the system and Privilege Escalation to read the flag file.
 
@@ -124,14 +124,16 @@ But I found on the source page.
 
 <kbd>![alt text](images/40.png)</kbd>
 
-I quickly visit the Asur's command history file.
+I quickly visit the Asur's command history file because HINT was about history.
 
 <kbd>![alt text](images/42.png)</kbd>
 
 <kbd>![alt text](images/43.png)</kbd>
 
 ```asur:b8be16afba8c314ad33d812f22a04991b90e2aaa```
+
 As per my assumptions, this must be the SSH login credentials but the password was hash format. For hash value to decode I use an online platform named CrackStation where I got the real value of the hash file.
+
 ```baconandcheese```
 
 <kbd>![alt text](images/44.png)</kbd>
@@ -143,6 +145,8 @@ It's time for Login with SSH !! but what !! I face an error!
 Now I visit the "passwd" file in which I tried all other users with the same credentials.
 
 <kbd>![alt text](images/47.png)</kbd>
+
+I can able to login with "shubh" user account. I realized, In "Asur" series shubh is a Asur. That's why I can use the credentials for "shubh" account.
 
 listing the directory files for the flag.
 
