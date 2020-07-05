@@ -1,6 +1,6 @@
 # Writeup for CTFFriday 2020 July W1 by Muzkkir
 
-In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theme "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad. "Asur" is a  Thriller Indian Web series and suspense make you to watch till the end without boring.
+In this article, I’m going to explain solutions of NSCTF July Week 1, 2020 CTF challenge theme "Asur" Organized by Net-Square Solutions Pvt. Ltd. and created by Prachi Karad. "Asur" is a Crime Thriller Indian Web series with so much grip and suspense make you to watch till the end without boring.
 
 This CTF had Five different challenges in which major 4 domain was covered; Stenography, Cryptography, Privilege Escalation, and Web challenges. We have to start from Stenography and Cryptography exploitation to access the system and Privilege Escalation to read the flag file.
 
