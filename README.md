@@ -11,52 +11,33 @@ This CTF had Five different challenges in which major 4 domain was covered; Sten
 
 ## First Flag
 
-<kbd>![alt text](test/36.png)</kbd>
+<kbd>![alt text](images/02.png)</kbd>
 
-As the challenge was about the findings of the "Robots.txt" file. First, I try to check the request and response for the "http://10.90.137.137/robots.txt" page. But, I received an empty response. Here is the screenshot.
+As the challenge was about the looking for the "MASK" on webpage. I visit source code page and found that.
 
-<kbd>![alt text](test/3.png)</kbd>
+<kbd>![alt text](images/03.png)</kbd>
+
+<kbd>![alt text](images/04.png)</kbd>
+
+Firstly, I have download all images and try to use Staghide tool to extract data.
 
 
-I try to change the request method to POST, still, that did not work. Then I thought it might be blocked by user-agent. So, I go to the "https://user-agents.net/" page and took a random browser-agent and build the script to try all one by one.
+<kbd>![alt text](images/2.png)</kbd>
 
+I use Binwalk tool to extract data from the images. Then I got extracted file from the "mask.jpg"
 
-<kbd>![alt text](test/33.png)</kbd>
+<kbd>![alt text](images/3.png)</kbd>
+<kbd>![alt text](images/4.png)</kbd>
 
-<kbd>![alt text](test/4.png)</kbd>
+Bingo !!! I got extracted file on that location. and finally This was my 1st Flag !!!
 
-But I didn’t get any result because it seems that I have to use a custom agent. I visit the home page for the hint. On source code 2 hidden "base64" value was written in hidden. I tried to decode those values.
-
-<kbd>![alt text](test/5.png)</kbd>
+<kbd>![alt text](images/05.png)</kbd>
 
 ```
-Encode Value   :  "dXNlX2NoYW5kcmFtYXVsaV8="
-Decoded Value  :  "use_chandramauli_"
-Encode Value   :  "d2hlbmV2ZXJfeW91X3dhbnQh"
-Decoded Value  :  "whenever_you_want"
+NSCTF{Andhakar_Ek_5ach_Hai_Aur_Prakash_3k_Mithya}
 ```
 
-After that, I enter this command:
-
-> curl --user-agent "chandramauli" http://10.90.137.137/robots.txt
-
-and received response:
-
-> "You made it ... but I want major version 2."
-
-<kbd>![alt text](test/6.png)</kbd>
-
-
-
-Spending a few minutes with the "try and error" method to get the flag.
-
-<kbd>![alt text](test/7.png)</kbd>
-
-And Finally This was my 1st Flag !!!
-
-```flag{tH!5_!5_N0_Pl@C3_t0_D!3}```
-
-<kbd>![alt text](test/8.png)</kbd>
+<kbd>![alt text](images/9.png)</kbd>
 
 
 
