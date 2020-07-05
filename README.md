@@ -173,7 +173,7 @@ At this point, you can notice that the user can run any command through find com
 
 <kbd>![alt text](images/68.png)</kbd>
 
-I have run some commands to see the possibilities. Below is the result.
+Runnig some commands to see the possibilities. Below is the result.
 ```
 localhost:/home/asur$ sudo find . -exec /bin/bash \;
 find: /bin/bash: No such file or directory
