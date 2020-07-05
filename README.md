@@ -43,7 +43,7 @@ Bingo !!! I got my 1st Flag !!!
 NSCTF{Andhakar_Ek_5ach_Hai_Aur_Prakash_3k_Mithya}
 ```
 
-<kbd>![alt text](images/9.png)</kbd>
+<kbd>![alt text](images/9)</kbd>
 
 
 
