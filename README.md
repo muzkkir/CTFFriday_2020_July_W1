@@ -16,7 +16,7 @@ As the challenge was about looking for the "MASK" on the webpage. I visit the so
 
 <kbd>![alt text](images/04.png)</kbd>
 
-Firstly, I have download all images and try to use the Staghide tool to extract data.
+Firstly, I have download all images and try to use the Steghide tool to extract data.
 
 <kbd>![alt text](images/2.png)</kbd>
 
@@ -28,6 +28,7 @@ I use the Binwalk tool to extract data from the images. I got extracted files fr
 binwalk -B mask.jpg 
 binwalk --dd='.*' mask.jpg
 ```
+by using that command I can able to extract the hidden files from image. 
 
 <kbd>![alt text](images/4.png)</kbd>
 
@@ -192,7 +193,8 @@ Gotcha !!!
 
 ## Conclusion
 
-Overall, this CTF was unique for me because I learned about Privilege Escalation, cryptography, and Stegniography.  Also, playing this was fun and I appreciate the efforts of the team.
+
+Overall, this CTF was unique for me because I learned about new techniques to Escalate my privileges, as I didn't expect that "find" command can be used for escalation, and cryptography, Stegniography was good for practice. Also, playing this was fun and I appreciate the efforts of the team.
 
 
 #
