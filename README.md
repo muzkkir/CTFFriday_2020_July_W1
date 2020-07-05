@@ -168,6 +168,7 @@ So, I research on the web about the "find" command to get superuser privilege on
 <kbd>![alt text](images/69.png)</kbd>
 
 > & Finally found something useful on "https://www.andreafortuna.org/2018/05/16/exploiting-sudo-for-linux-privilege-escalation/" Domain.
+
 At this point, you can notice that the user can run any command through find command. Therefore we got root access by executing below commands.
 
 <kbd>![alt text](images/68.png)</kbd>
